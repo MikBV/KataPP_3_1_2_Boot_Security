@@ -3,11 +3,13 @@ package ru.kata.spring.boot_security.demo.entity;
 import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.UniqueElements;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.Email;
@@ -49,16 +51,22 @@ public class User {
     @Column (nullable = false)
     boolean enabled;
 
-    @ManyToMany
-    @JoinTable (name = "users-roles")
+    /**
+     * Настройка связи с сущностью Role как many-to-many.
+     * Содержит описание промежуточной таблицы.
+     * Каскадирование только на стороне пользователя и только для сохранения и изменения
+     */
+    @ManyToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable (name = "users-roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private List<Role> roles;
 
     /**
      * Конструкторы
      */
 
-    public User(int id, String email, String password, String firstName, String lastName, int age, List<Role> roles) {
-        this.id = id;
+    public User(String email, String password, String firstName, String lastName, int age, List<Role> roles) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;

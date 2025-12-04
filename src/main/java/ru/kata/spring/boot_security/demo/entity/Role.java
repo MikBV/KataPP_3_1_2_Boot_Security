@@ -25,8 +25,15 @@ public class Role {
     @NotNull
     private String roleName;
 
-    @ManyToMany (mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles")
     private List<User> users;
+
+    public Role(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public Role() {
+    }
 
     /**
      * Геттеры и сеттеры
@@ -52,7 +59,13 @@ public class Role {
         return users;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void addUser(User user) {
+        this.users.add(user);
+        user.getRoles().add(this);
+    }
+
+    public void deleteUser(User user) {
+        this.users.remove(user);
+        user.getRoles().remove(this);
     }
 }
