@@ -3,8 +3,10 @@ package ru.kata.spring.boot_security.demo.service;
 import org.springframework.stereotype.Service;
 
 /**
- * Сервисный класс для entity-класса User
+ * Сервисный интерфейс для entity-класса User
+ * Чтобы разделить логику и реализацию
  */
-@Service
-public class UserService {
+
+public interface UserService {
+
 }
