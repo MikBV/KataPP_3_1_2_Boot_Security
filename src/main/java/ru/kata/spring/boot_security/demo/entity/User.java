@@ -1,7 +1,6 @@
 package ru.kata.spring.boot_security.demo.entity;
 
 import org.hibernate.validator.constraints.Range;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,29 +25,28 @@ public class User {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column (nullable = false, unique = true)
+    @Column (unique = true)
     @NotBlank
     @Email
-    @UniqueElements
     private String email;
 
-    @Column (nullable = false)
+    @Column
     @NotBlank
     private String password;
 
-    @Column (nullable = false)
+    @Column
     @NotBlank
     private String firstName;
 
-    @Column (nullable = false)
+    @Column
     @NotBlank
     private String lastName;
 
-    @Column (nullable = false)
+    @Column
     @Range(min = 5, max = 140)
     private int age;
 
-    @Column (nullable = false)
+    @Column
     boolean enabled;
 
     /**
@@ -57,7 +55,7 @@ public class User {
      * Каскадирование только на стороне пользователя и только для сохранения и изменения
      */
     @ManyToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable (name = "users-roles",
+    @JoinTable (name = "user_role",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private List<Role> roles;
@@ -90,11 +88,11 @@ public class User {
         return id;
     }
 
-    public @NotBlank @Email @UniqueElements String getEmail() {
+    public @NotBlank @Email String getEmail() {
         return email;
     }
 
-    public void setEmail(@NotBlank @Email @UniqueElements String email) {
+    public void setEmail(@NotBlank @Email String email) {
         this.email = email;
     }
 
