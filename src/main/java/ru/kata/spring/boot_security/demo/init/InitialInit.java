@@ -35,8 +35,8 @@ public class InitialInit {
     @PostConstruct
     @Transactional
     public void init() {
-        Role roleUser = new Role("ROLE_USER");
-        Role roleAdmin = new Role("ROLE_ADMIN");
+        Role roleUser = roleRepository.save(new Role("ROLE_USER"));
+        Role roleAdmin = roleRepository.save(new Role("ROLE_ADMIN"));
 
         List<Role> rolesForUser = new ArrayList<>();
         rolesForUser.add(roleUser);
@@ -46,11 +46,10 @@ public class InitialInit {
         User user = new User( "user@user.com", passwordEncoder.encode("root"), "User", "User",13, rolesForUser);
         User admin = new User("admin@ad.com", passwordEncoder.encode("123"), "Admin", "Admin",55, rolesForAdmin);
 
+        userRepository.save(admin); // I don't know why I can't save admin
         userRepository.save(user);
-        //userRepository.save(admin); // I don't know why i can't save admin
 
-        //roleRepository.save(roleUser);
-        //roleRepository.save(roleAdmin);
+
 
     }
 

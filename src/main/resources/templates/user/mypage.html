@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>This is my page!</title>
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}">
+    
+    </head>
+    <body>
+        <h1>This is my page!</h1>
+        <div class="container-fluid">
+            <table class="table table-striped table-bordered table-hover table-sm" id="mytable">
+                <thead>
+                    <tr>
+                        <th>E-mail</th>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <!-- User userView -->
+                <tr>
+                        <td value="ttt" th:value="${userView.email}">ddd</td>
+                        <td th:value="${userView.firstName}">ddd</td>
+                        <td th:value="${userView.lastName}">ddd</td>
+                        <td th:value="${userView.age}">ddd</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <button type="submit" >Delete my account</button>
+        <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/1.16.1/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+    
+    </body>
+</html>

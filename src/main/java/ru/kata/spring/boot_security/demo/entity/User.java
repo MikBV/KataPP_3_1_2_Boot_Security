@@ -54,7 +54,7 @@ public class User {
      * Содержит описание промежуточной таблицы.
      * Каскадирование только на стороне пользователя и только для сохранения и изменения
      */
-    @ManyToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany (cascade = {CascadeType.MERGE})
     @JoinTable (name = "user_role",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))

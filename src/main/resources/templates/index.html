@@ -6,10 +6,13 @@
         <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}">
     </head>
     <body>
-        <h1>Welcome to Index PAGE!</h1>
-        <form action="login" th:action="@{/login}" method="post" >
-            <input type="submit" value="Login" />
-        </form>
-        <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.bundle.min.js}"></script>
+        <p class="h1">Welcome to Index PAGE!</p>
+        <!-- <form action="login" method="post" >  th:action="@{/login}"
+            <input type="submit" value="Login">
+        </form> -->
+        <a href="\login" class="btn btn-primary">Login</a>
+        <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/1.16.1/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
     </body>
 </html>
