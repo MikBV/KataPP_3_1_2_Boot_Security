@@ -48,9 +48,5 @@ public class InitialInit {
 
         userRepository.save(admin); // I don't know why I can't save admin
         userRepository.save(user);
-
-
-
     }
-
 }
